@@ -23,38 +23,36 @@ export class ContactController {
       name,
       emails,
       phones,
-      customer,
     }: Contact = req.body;
 
-    console.log('customer:', customer);
-    if (!name || !emails || !customer) {
+    if (!name || !emails) {
       return res.status(400).json({
         error: 'Parameterization error in the request',
-        params: `name: ${name} | emails: ${emails} | phones: ${phones} | customer: ${customer}`
+        params: `name: ${name} | emails: ${emails} | phones: ${phones}`
       })
     }
     const contacts = await Contacts.create({
       name,
       emails,
       phones,
-      customer
     });
+
     return res.status(201).json({ contacts });
   }
 
   static async update(req: Request, res: Response) {
     const { contactId } = req.params;
+
     const {
       name,
       emails,
       phones,
-      customer,
     }: Contact = req.body;
 
-    if (!name || !emails || !customer) {
+    if (!name || !emails) {
       return res.status(400).json({
         error: 'Parameterization error in the request',
-        params: `name: ${name} | emails: ${emails} | phones: ${phones} | customer: ${customer}`
+        params: `name: ${name} | emails: ${emails} | phones: ${phones}`
       })
     }
 
@@ -63,7 +61,6 @@ export class ContactController {
     contact.name = '' + name || contact.name;
     contact.emails = emails || contact.emails;
     contact.phones = phones || contact.phones;
-    contact.customer = customer || contact.customer;
 
     await contact.save();
 
@@ -76,6 +73,7 @@ export class ContactController {
   static async delete(req: Request, res: Response) {
     console.log('ContactController.delete');
     const { contactId } = req.params;
+
     // validation to know if the received parameter can be converted 
     //to an ObjectId
     if (!contactId.match(/^[0-9a-fA-F]{24}$/)) {

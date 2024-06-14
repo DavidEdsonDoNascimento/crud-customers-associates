@@ -13,7 +13,7 @@ export class CustomerController {
   static async getCustomerById(req: Request, res: Response) {
     console.log('CustomerController.getCustomerById');
     const { customerId } = req.params;
-    const customer = await Customers.findOne({ _id: customerId });
+    const customer = await Customers.findOne({ _id: customerId }).populate('contacts');
     return res.status(200).json(customer)
   }
 
@@ -43,6 +43,7 @@ export class CustomerController {
 
   static async update(req: Request, res: Response) {
     const { customerId } = req.params;
+
     const {
       name,
       emails,
@@ -53,7 +54,7 @@ export class CustomerController {
     if (!name || !emails) {
       return res.status(400).json({
         error: 'Parameterization error in the request',
-               params: `name: ${name} | emails: ${emails} | phones: ${phones} | contacts: ${contacts}`
+        params: `name: ${name} | emails: ${emails} | phones: ${phones} | contacts: ${contacts}`
       })
     }
 
@@ -73,8 +74,9 @@ export class CustomerController {
   }
 
   static async delete(req: Request, res: Response) {
-    console.log('ContactController.delete');
+    console.log('CustomerController.delete');
     const { customerId } = req.params;
+
     // validation to know if the received parameter can be converted 
     //to an ObjectId
     if (!customerId.match(/^[0-9a-fA-F]{24}$/)) {
