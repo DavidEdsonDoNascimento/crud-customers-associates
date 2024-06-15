@@ -51,7 +51,8 @@ yarn add tsconfig-paths -D
 use the format created in src/routes to create endpoints and the standard use of controllers for functions that will return data from endpoints, follow the ConnectionService service to create an easy connection with the Mongo database
 
 
-On the MongoDB website, a free cluster called NotepadSample was reused, it was created as collections (customers and associates) so that CRUD could be done, fia migrations could be done but I was out of time, who knows, maybe I'll adjust this in the future
-(image of collections in the cluster -> /backend/documents/collections.png)
+On the MongoDB website, a free cluster that I had created for studies called NotepadSample was reused, it was created containing the collections (clients and associates) so that CRUD could be done, migrations could be done, but I was out of time, who knows, maybe I adjust this in the future
+(image of collections in the cluster, if you want to test in your local environment, create the cluster with the same name (NotepadSample) and the collations customers and associates -> /backend/documents/collections.png)
+Then adjust the .env file and backend/src/services/ConnectionService.ts
 
 
