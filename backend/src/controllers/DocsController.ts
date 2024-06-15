@@ -16,45 +16,67 @@ class DocsController {
         method: 'GET'
       },
       {
-        route: '/annotations',
-        description: 'Get all annotations',
+        route: '/customer',
+        description: 'Get all customers',
         method: 'GET'
       },
       {
-        route: '/annotations/<ID>',
-        description: 'Delete notes from id',
+        route: '/customer/<ID>',
+        description: 'Delete customer from id',
         method: 'DELETE'
       },
       {
-        route: '/annotations',
-        description: 'Create new annotation',
+        route: '/customer',
+        description: 'Create new customer',
         method: 'POST',
         body: [
-          'title: String',
-          'notes: String',
-          'priority: Boolean'
+          'name: String',
+          'emails: String',
+          'phones: String',
+          'contacts: Array<{name, emails, phones}>'
         ]
       },
       {
-        route: '/annotations/<ID>',
-        description: 'Update annotation',
+        route: '/customer/<ID>',
+        description: 'Update customer',
         method: 'POST',
         body: [
-          'title: String',
-          'notes: String',
-          'priority: Boolean'
+          'name: String',
+          'emails: String',
+          'phones: String',
+          'contacts: Array<{name, emails, phones}>'
         ]
       },
       {
-        route: '/priorities?priority=true',
-        description: 'Get all annotations with priority',
+        route: '/contact',
+        description: 'Get all contacts',
         method: 'GET'
       },
       {
-        route: '/priorities/<ID>',
-        description: 'Change priority annotation by id',
-        method: 'POST'
+        route: '/contact/<ID>',
+        description: 'Delete contact from id',
+        method: 'DELETE'
       },
+      {
+        route: '/contact',
+        description: 'Create new contact',
+        method: 'POST',
+        body: [
+          'name: String',
+          'emails: String',
+          'phones: String'
+        ]
+      },
+      {
+        route: '/contact/<ID>',
+        description: 'Update contact',
+        method: 'POST',
+        body: [
+          'name: String',
+          'emails: String',
+          'phones: String'
+        ]
+      }
     ];
     return res.status(200).json(docsRoutes);
   }
