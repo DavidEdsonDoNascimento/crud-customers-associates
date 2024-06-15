@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const signForm = z.object({
@@ -14,10 +15,12 @@ type SignForm = z.infer<typeof signForm>
 export const SignIn = () => {
 
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignForm>();
+  const navigate = useNavigate();
 
   const handleSignIn = async (data: SignForm) => {
     console.log(data.email);
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    navigate('/');
   }
 
   return (
